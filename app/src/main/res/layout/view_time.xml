@@ -1,0 +1,28 @@
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <dev.jamesroberts.timecube.ui.view.TimePicker
+        android:id="@+id/hour_picker"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        />
+    <TextView
+        android:layout_width="10dp"
+        android:layout_height="80dp"
+        android:text=":"
+        android:textSize="50sp"
+        />
+    <dev.jamesroberts.timecube.ui.view.TimePicker
+        android:id="@+id/minute_picker"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        />
+    <dev.jamesroberts.timecube.ui.view.TimePicker
+        android:id="@+id/ampm_picker"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
