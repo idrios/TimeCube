@@ -13,21 +13,15 @@
         android:orientation="vertical"
         tools:context=".ui.fragment.AlarmEditorFragment">
 
-        <FrameLayout
+
+        <dev.jamesroberts.timecube.ui.view.TimeView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="#EEE"
             android:gravity="center"
-            android:id="@+id/framelayout_timeview"
-            >
-
-            <dev.jamesroberts.timecube.ui.view.TimeView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                />
-        </FrameLayout>
+            android:id="@+id/view_time"
+            />
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="0dp"

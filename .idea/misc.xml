@@ -9,6 +9,8 @@
         <entry key="app/src/main/res/layout/fragment_alarm_editor.xml" value="0.3046875" />
         <entry key="app/src/main/res/layout/fragment_alarm_manager.xml" value="0.3046875" />
         <entry key="app/src/main/res/layout/sample_time_view2.xml" value="0.290625" />
+        <entry key="app/src/main/res/layout/view_time.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/view_time_picker.xml" value="0.2864583333333333" />
       </map>
     </option>
   </component>
