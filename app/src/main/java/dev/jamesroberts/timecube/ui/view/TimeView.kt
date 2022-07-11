@@ -16,7 +16,7 @@ class TimeView : LinearLayoutCompat {
         _hourPicker = findViewById<TimePicker>(R.id.hour_picker)
         _minutePicker = findViewById<TimePicker>(R.id.minute_picker)
         _ampmPicker = findViewById<TimePicker>(R.id.ampm_picker)
-
+        //
     }
 
     private var _hourPicker : TimePicker? = null;
