@@ -1,7 +1,3 @@
 package dev.jamesroberts.timecube.ui.view
 
-class TimePickerElement(val data : String) {
-    init{
-
-    }
-}
+data class TimePickerElement(val text : String) {}
