@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dev.jamesroberts.timecube.R
 
+// TODO: Include possible times in attribute set
 class TimePicker : FrameLayout {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
             super(context, attrs, defStyleAttr, defStyleRes) {
@@ -29,14 +30,24 @@ class TimePicker : FrameLayout {
             super(context) {
     }
 
-    private var _currentTime: String = "0"
-    private var _times: Array<String> = arrayOf<String>()
+    private val models : List<TimeUnit> = listOf(
+        TimeUnit("1"),
+        TimeUnit("2"),
+        TimeUnit("3"),
+        TimeUnit("4"),
+        TimeUnit("5"),
+    )
+    private var _recyclerView : RecyclerView
+    private var _currentTime: String
+    private var _adapter: Adapter
 
     init {
-        inflate(context, R.layout.view_time_picker, this);
-        val recyclerView : RecyclerView = findViewById(R.id.time_picker_recycler_view);
-        recyclerView.layoutManager = LinearLayoutManager(context)
-
+        inflate(context, R.layout.view_time_picker, this)
+        _recyclerView = findViewById(R.id.time_picker_recycler_view)
+        _currentTime = "1"
+        _adapter = Adapter(models)
+        _recyclerView.adapter = _adapter
+        _recyclerView.layoutManager = LinearLayoutManager(context)
     }
 
     /** /////////////////////////////////////////////////////////////////////////////////////// */
@@ -62,6 +73,7 @@ class TimePicker : FrameLayout {
      *  We need a custom view for each number (as a String because this might be displaying
      *  "AM/PM"), a ViewHolder to wrap our custom view, and an Adapter to link the ViewHolders
      *  together in a way that makes sense for our app.
+     *
      */
 
     /**

@@ -11,6 +11,10 @@ class TimeView : LinearLayoutCompat {
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs, 0) {}
     constructor(context: Context) : super(context, null, 0) {}
 
+    private var _hourPicker : TimePicker? = null;
+    private var _minutePicker : TimePicker? = null;
+    private var _ampmPicker : TimePicker? = null;
+
     init {
         inflate(context, R.layout.view_time, this)
         _hourPicker = findViewById<TimePicker>(R.id.hour_picker)
@@ -18,9 +22,4 @@ class TimeView : LinearLayoutCompat {
         _ampmPicker = findViewById<TimePicker>(R.id.ampm_picker)
         
     }
-
-    private var _hourPicker : TimePicker? = null;
-    private var _minutePicker : TimePicker? = null;
-    private var _ampmPicker : TimePicker? = null;
-
 }
