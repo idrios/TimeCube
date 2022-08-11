@@ -1,16 +1,13 @@
 package dev.jamesroberts.timecube.ui.view
 
 import android.content.Context
-import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
-import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import dev.jamesroberts.timecube.R
 
 // TODO: Include possible times in attribute set
@@ -32,11 +29,37 @@ class TimePicker : FrameLayout {
     }
 
     private val models : List<TimeUnit> = listOf(
+        // These are hardcoded
         TimeUnit("1"),
         TimeUnit("2"),
         TimeUnit("3"),
         TimeUnit("4"),
         TimeUnit("5"),
+        TimeUnit("6"),
+        TimeUnit("7"),
+        TimeUnit("8"),
+        TimeUnit("9"),
+        TimeUnit("10"),
+        TimeUnit("11"),
+        TimeUnit("12"),
+        TimeUnit("13"),
+        TimeUnit("14"),
+        TimeUnit("15"),
+        TimeUnit("16"),
+        TimeUnit("17"),
+        TimeUnit("18"),
+        TimeUnit("19"),
+        TimeUnit("20"),
+        TimeUnit("21"),
+        TimeUnit("22"),
+        TimeUnit("23"),
+        TimeUnit("24"),
+        TimeUnit("25"),
+        TimeUnit("26"),
+        TimeUnit("27"),
+        TimeUnit("28"),
+        TimeUnit("29"),
+        TimeUnit("30"),
     )
     private var _recyclerView : RecyclerView
     private var _currentTime: String
@@ -44,11 +67,14 @@ class TimePicker : FrameLayout {
 
     init {
         inflate(context, R.layout.view_time_picker, this)
+
         _recyclerView = findViewById(R.id.time_picker_recycler_view)
-        _currentTime = "1"
-        _adapter = InfiniteAdapter(models, 3)
-        _recyclerView.adapter = _adapter
         _recyclerView.layoutManager = LinearLayoutManager(context)
+        val snapHelper : SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(_recyclerView)
+        _currentTime = "12" // Hardcoded, should be passed param
+        _adapter = InfiniteAdapter(models, snapHelper, models.indexOfFirst{it.data == _currentTime})
+        _recyclerView.adapter = _adapter
     }
 
     /** /////////////////////////////////////////////////////////////////////////////////////// */
@@ -145,10 +171,11 @@ class TimePicker : FrameLayout {
      *  Hah. Just kidding. This was clever but would screw up on fling with the adapter
      *  so we just make the adapter colossally long and start in the middle instead.
      */
-    class InfiniteAdapter(private val _list: List<TimeUnit>, private val startOffset: Int) : RecyclerView.Adapter<ViewHolder>(){
+    class InfiniteAdapter(private val _list: List<TimeUnit>, private val _helper: SnapHelper, startIndex: Int) : RecyclerView.Adapter<ViewHolder>(){
 
-        private val START_POS = (Int.MAX_VALUE / 2) + (startOffset % _list.size)
-        private var layoutManager: RecyclerView.LayoutManager? = null
+        private val INT_HALF_MAX = Int.MAX_VALUE / 2
+        private val START_POS =  INT_HALF_MAX - (INT_HALF_MAX % _list.size) + (startIndex % _list.size)
+        private var recyclerView: RecyclerView? = null
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context)
@@ -158,20 +185,24 @@ class TimePicker : FrameLayout {
 
         override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
             super.onAttachedToRecyclerView(recyclerView)
-            layoutManager = recyclerView.layoutManager
-            layoutManager?.scrollToPosition(START_POS)
+            this.recyclerView = recyclerView
         }
 
         override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
             super.onDetachedFromRecyclerView(recyclerView)
-            layoutManager = null
+            this.recyclerView = null
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             var realPosition = position
             if(position < 100 || position > Int.MAX_VALUE - 100){
                 realPosition += START_POS
-                layoutManager?.scrollToPosition(realPosition)
+                Log.i("TimePicker","recyclerView: ${recyclerView}, layoutManager: ${recyclerView?.layoutManager} ")
+                recyclerView?.layoutManager?.scrollToPosition(realPosition)
+                //val snapDistance: IntArray = _helper.calculateDistanceToFinalSnap(recyclerView?.layoutManager!!, holder.itemView)!!
+                //if (snapDistance[0] != 0 || snapDistance[1] != 0) {
+                //    recyclerView!!.scrollBy(snapDistance[0], snapDistance[1])
+                //}
             }
             val timeUnit = _list[realPosition % _list.size] // get data from ViewHolder
             holder.textView.text = timeUnit.data
@@ -179,18 +210,6 @@ class TimePicker : FrameLayout {
 
         override fun getItemCount(): Int {
             return Int.MAX_VALUE
-        }
-    }
-
-    /**
-     * InfiniteLayoutManager
-     *  A normal RecyclerView wouldn't need this, but a normal RecyclerView doesn't allow
-     *  you to scroll infinitely in both directions. Override some default behaviors here.
-     *
-     */
-    class InfiniteLayoutManager() : RecyclerView.LayoutManager() {
-        override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
-            TODO("Not yet implemented")
         }
     }
 }
