@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.*
+import com.yarolegovich.discretescrollview.DiscreteScrollView
+import com.yarolegovich.discretescrollview.InfiniteScrollAdapter
+import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import dev.jamesroberts.timecube.R
 
 // TODO: Include possible times in attribute set
@@ -61,20 +64,21 @@ class TimePicker : FrameLayout {
         TimeUnit("29"),
         TimeUnit("30"),
     )
-    private var _recyclerView : RecyclerView
-    private var _currentTime: String
-    private var _adapter: RecyclerView.Adapter<ViewHolder>
+    private var _dsv : DiscreteScrollView
+    private var _currentTime: String = "12"
 
     init {
         inflate(context, R.layout.view_time_picker, this)
+        _dsv = findViewById(R.id.time_picker_dsv)
+        _dsv.adapter = InfiniteScrollAdapter.wrap(Adapter(models))
+        _dsv.setItemTransitionTimeMillis(100)
+        _dsv.setItemTransformer(ScaleTransformer
+            .Builder()
+            .setMinScale(0.8f)
+            .build())
+        _dsv.setSlideOnFling(true) // enable fling
 
-        _recyclerView = findViewById(R.id.time_picker_recycler_view)
-        _recyclerView.layoutManager = LinearLayoutManager(context)
-        val snapHelper : SnapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(_recyclerView)
-        _currentTime = "12" // Hardcoded, should be passed param
-        _adapter = InfiniteAdapter(models, snapHelper, models.indexOfFirst{it.data == _currentTime})
-        _recyclerView.adapter = _adapter
+
     }
 
     /** /////////////////////////////////////////////////////////////////////////////////////// */
