@@ -22,20 +22,14 @@
             android:gravity="center"
             android:id="@+id/view_time"
             />
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <dev.jamesroberts.timecube.ui.view.FrequencyView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="#DDD"
+            android:background="#EEE"
             android:gravity="center"
             android:id="@+id/view_frequency"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="FrequencyView" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            />
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="0dp"

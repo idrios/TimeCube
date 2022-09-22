@@ -2,4 +2,12 @@
     <string name="app_name">TimeCube</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="weekday_picker_sun_abbr">SU</string>
+    <string name="weekday_picker_mon_abbr">MO</string>
+    <string name="weekday_picker_tue_abbr">TU</string>
+    <string name="weekday_picker_wed_abbr">WE</string>
+    <string name="weekday_picker_thu_abbr">TH</string>
+    <string name="weekday_picker_fri_abbr">FR</string>
+    <string name="weekday_picker_sat_abbr">SA</string>
 </resources>

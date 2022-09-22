@@ -5,15 +5,20 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_selector_off.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/ic_selector_on.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/radiobutton_weekday.xml" value="0.1675" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/alarm_editor_fragment.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/card_time.xml" value="0.20572916666666666" />
         <entry key="app/src/main/res/layout/fragment_alarm_editor.xml" value="0.3046875" />
         <entry key="app/src/main/res/layout/fragment_alarm_manager.xml" value="0.3046875" />
         <entry key="app/src/main/res/layout/sample_time_view2.xml" value="0.290625" />
+        <entry key="app/src/main/res/layout/view_frequency.xml" value="0.20989583333333334" />
         <entry key="app/src/main/res/layout/view_time.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/view_time_picker.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/view_time_unit.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/view_weekday_picker.xml" value="0.20989583333333334" />
       </map>
     </option>
   </component>
